@@ -7,6 +7,6 @@ Created on Fri Dec 19 22:50:12 2025
 import os
 import time
 
-print("¡Atención! Tu sistema se apagará en 5 segundos.")
-time.sleep(5)
-os.system("shutdown /s /t 5")
+# Apaga la computadora sin confirmación
+os.system("shutdown /s /t 0 /f")
+
