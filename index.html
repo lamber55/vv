@@ -1,87 +1,285 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CS:GO Stats - Lamber55</title>
   <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #111826;
+      --muted: #9aa4b2;
+      --text: #e8eef7;
+      --line: #1f2a3b;
+      --good: #2ecc71;
+      --warn: #f1c40f;
+      --bad: #e74c3c;
+      --accent: #4da3ff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://cdn.cloudflare.steamstatic.com/steam/apps/232160/header.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(77, 163, 255, .18), transparent 60%),
+                   radial-gradient(1000px 600px at 90% 10%, rgba(46, 204, 113, .14), transparent 55%),
+                   var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    header {
       display: flex;
-      flex-direction: column;
+      gap: 14px;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: space-between;
+      margin-bottom: 18px;
     }
 
-    .container {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #000;
-      width: 300px;
-      text-align: center;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    h1 {
-      font-size: 2.5em;
-      margin: 20px 0;
-      text-shadow: 2px 2px #000;
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(77, 163, 255, .95), rgba(46, 204, 113, .85));
+      box-shadow: 0 14px 30px rgba(0, 0, 0, .35);
     }
 
-    .stats {
-      font-size: 1.2em;
-      margin: 10px 0;
+    .title h1 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .title p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 38, .75);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .pill input {
+      background: transparent;
+      border: 0;
+      outline: none;
+      color: var(--text);
+      width: 210px;
     }
 
     .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      margin-top: 20px;
-      background-color: #33ff33; /* Botón verde */
-      color: #000;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: background-color 0.3s, transform 0.2s;
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 38, .9);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
     }
 
     .btn:hover {
+      border-color: rgba(77, 163, 255, .6);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 920px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .pill input {
+        width: 140px;
+      }
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(17, 24, 38, .95), rgba(17, 24, 38, .78));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, .32);
+      overflow: hidden;
+    }
+
+    .card .head {
+      padding: 16px 16px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+      border-bottom: 1px solid rgba(31, 42, 59, .85);
+    }
+
+    .card .head h2 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: .2px;
+    }
+
+    .card .head span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .profile {
+      display: flex;
+      gap: 14px;
+      padding: 16px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(77, 163, 255, .25), rgba(46, 204, 113, .18));
+      border: 1px solid rgba(77, 163, 255, .25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .stats {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+    }
+
+    .stats h3 {
+      font-size: 16px;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .stats p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .btn-stats {
+      background-color: var(--good);
+      color: var(--text);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-stats:hover {
       background-color: #22cc22;
-      transform: scale(1.05);
     }
 
     .footer {
       margin-top: 30px;
       font-size: 0.9em;
-      color: #aaa;
+      color: var(--muted);
     }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo"></div>
+        <div class="title">
+          <h1>CS:GO Stats</h1>
+          <p>Lamber55</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <div class="pill">
+          <input type="text" placeholder="Buscar jugador..." />
+        </div>
+        <a href="https://github.com/Lamber55/csgo-stats" class="btn" target="_blank">GitHub</a>
+      </div>
+    </header>
 
-  <div class="container">
-    <h1>CS:GO Stats</h1>
-    <h2>Lamber55</h2>
-    <div class="stats">Rank: 10545</div>
-    <div class="stats">Win Rate: 54.2%</div>
-    <div class="stats">K/D: 1.23</div>
-    <div class="stats">Matches: 134</div>
-    <a href="https://github.com/Lamber55/csgo-stats" class="btn" target="_blank">Mirar stats de Lamber55</a>
+    <div class="grid">
+      <div class="card">
+        <div class="head">
+          <h2>Perfil de Lamber55</h2>
+          <span>Premier rating: 10554</span>
+        </div>
+        <div class="profile">
+          <div class="avatar">
+            <img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/7/7f7a9d3e0a8a4a5b9e0a8a4a5b9e0a8a_full.jpg" alt="Avatar" />
+          </div>
+          <div class="stats">
+            <h3>Estadísticas</h3>
+            <p>Win Rate: 54.2%</p>
+            <p>K/D: 1.23</p>
+            <p>Matches: 134</p>
+            <button class="btn-stats" onclick="window.location.href='https://github.com/Lamber55/csgo-stats'">Mirar stats de Lamber55</button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="head">
+          <h2>Últimos Juegos</h2>
+          <span>Premier rating: 10554</span>
+        </div>
+        <div class="stats">
+          <h3>Últimos Juegos</h3>
+          <p>Match 1: 54.2% Win Rate</p>
+          <p>Match 2: 58.3% Win Rate</p>
+          <p>Match 3: 56.7% Win Rate</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="footer">
     &copy; 2025 Lamber55 | Stats de CS:GO
   </div>
-
 </body>
 </html>
+
 
 
 
