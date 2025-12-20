@@ -5,210 +5,181 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CS:GO Stats - Lamber55</title>
   <style>
-    :root{
-      --bg:#0b0f14;
-      --card:#111826;
-      --muted:#9aa4b2;
-      --text:#e8eef7;
-      --line:#1f2a3b;
-      --good:#2ecc71;
-      --warn:#f1c40f;
-      --bad:#e74c3c;
-      --accent:#4da3ff;
-      --mint:#00ffcc;
+    :root {
+      --bg: #0b0f14;
+      --card: #111826;
+      --muted: #9aa4b2;
+      --text: #e8eef7;
+      --line: #1f2a3b;
+      --good: #2ecc71;
+      --warn: #f1c40f;
+      --bad: #e74c3c;
+      --accent: #4da3ff;
+      --mint: #00ffcc;
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
-      background:radial-gradient(1200px 700px at 20% -10%, rgba(77,163,255,.18), transparent 60%),
-                 radial-gradient(1000px 600px at 90% 10%, rgba(0,255,204,.12), transparent 55%),
-                 var(--bg);
-      color:var(--text);
+    * { box-sizing: border-box }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(77,163,255,.18), transparent 60%),
+                   radial-gradient(1000px 600px at 90% 10%, rgba(0,255,204,.12), transparent 55%),
+                   var(--bg);
+      color: var(--text);
     }
-    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 60px}
-    header{
-      display:flex; gap:14px; align-items:center; justify-content:space-between;
-      margin-bottom:18px; flex-wrap:wrap;
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 28px 18px 60px }
+    header {
+      display: flex; gap: 14px; align-items: center; justify-content: space-between;
+      margin-bottom: 18px; flex-wrap: wrap;
     }
-    .brand{display:flex; align-items:center; gap:12px}
-    .logo{
-      width:42px; height:42px; border-radius:14px;
-      background:linear-gradient(135deg, rgba(0,255,204,.95), rgba(77,163,255,.85));
-      box-shadow:0 14px 30px rgba(0,0,0,.35);
+    .brand {
+      display: flex; align-items: center; gap: 12px
     }
-    .title h1{font-size:18px; margin:0}
-    .title p{margin:2px 0 0; color:var(--muted); font-size:13px}
-    .top-actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .pill{
-      border:1px solid var(--line);
-      background:rgba(17,24,38,.75);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius:999px;
-      font-size:13px;
-      display:flex; gap:10px; align-items:center;
-      min-width:260px;
+    .logo {
+      width: 42px; height: 42px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(0,255,204,.95), rgba(77,163,255,.85));
+      box-shadow: 0 14px 30px rgba(0,0,0,.35);
     }
-    .pill input{
-      background:transparent; border:0; outline:none; color:var(--text);
-      width:100%;
+    .title h1 { font-size: 18px; margin: 0 }
+    .title p { margin: 2px 0 0; color: var(--muted); font-size: 13px }
+    .top-actions {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap
     }
-    .btn{
-      border:1px solid var(--line);
-      background:rgba(17,24,38,.9);
-      padding:10px 12px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:700;
-      font-size:13px;
-      text-decoration:none;
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
+    .pill {
+      border: 1px solid var(--line);
+      background: rgba(17,24,38,.75);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      display: flex; gap: 10px; align-items: center;
+      min-width: 260px;
     }
-    .btn:hover{border-color:rgba(77,163,255,.6)}
-    .btn.primary{
-      border-color: rgba(0,255,204,.35);
-      background: rgba(0,255,204,.12);
+    .pill input {
+      background: transparent; border: 0; outline: none; color: var(--text);
+      width: 100%;
     }
-    .grid{
-      display:grid;
+    .btn {
+      border: 1px solid var(--line);
+      background: rgba(17,24,38,.9);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      text-decoration: none;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn:hover { border-color: rgba(77,163,255,.6) }
+    .grid {
+      display: grid;
       grid-template-columns: 1.2fr .8fr;
-      gap:14px;
-      margin-top:14px;
+      gap: 14px;
+      margin-top: 14px;
     }
-    @media (max-width: 920px){
-      .grid{grid-template-columns:1fr}
-      .pill{min-width:200px}
+    @media (max-width: 920px) {
+      .grid { grid-template-columns: 1fr }
+      .pill { min-width: 200px }
     }
-    .card{
-      background:linear-gradient(180deg, rgba(17,24,38,.95), rgba(17,24,38,.78));
-      border:1px solid var(--line);
-      border-radius:18px;
-      box-shadow:0 18px 44px rgba(0,0,0,.32);
-      overflow:hidden;
+    .card {
+      background: linear-gradient(180deg, rgba(17,24,38,.95), rgba(17,24,38,.78));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 18px 44px rgba(0,0,0,.32);
+      overflow: hidden;
     }
-    .head{
-      padding:16px 16px 12px;
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:10px;
-      border-bottom:1px solid rgba(31,42,59,.85);
+    .head {
+      padding: 16px 16px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 10px;
+      border-bottom: 1px solid rgba(31,42,59,.85);
     }
-    .head h2{margin:0; font-size:14px; letter-spacing:.2px}
-    .head span{color:var(--muted); font-size:12px}
-    .profile{
-      display:flex;
-      gap:14px;
-      padding:16px;
-      align-items:center;
+    .head h2 { margin: 0; font-size: 14px; letter-spacing: .2px }
+    .head span { color: var(--muted); font-size: 12px }
+    .profile {
+      display: flex;
+      gap: 14px;
+      padding: 16px;
+      align-items: center;
     }
-    .avatar{
-      width:64px; height:64px;
-      border-radius:18px;
-      background:linear-gradient(135deg, rgba(0,255,204,.20), rgba(77,163,255,.18));
-      border:1px solid rgba(0,255,204,.25);
-      display:flex; align-items:center; justify-content:center;
-      font-weight:900;
-      font-size:20px;
+    .avatar {
+      width: 64px; height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(0,255,204,.20), rgba(77,163,255,.18));
+      border: 1px solid rgba(0,255,204,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
     }
-    .pinfo{flex:1}
-    .pinfo .name{font-size:18px; margin:0}
-    .pinfo .meta{margin:4px 0 0; color:var(--muted); font-size:13px}
-    .rank{
-      display:flex; flex-direction:column; align-items:flex-end; gap:6px;
-      text-align:right;
+    .pinfo { flex: 1 }
+    .pinfo .name { font-size: 18px; margin: 0 }
+    .pinfo .meta { margin: 4px 0 0; color: var(--muted); font-size: 13px }
+    .rank {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 6px;
+      text-align: right;
     }
-    .badge{
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(0,255,204,.35);
-      background:rgba(0,255,204,.12);
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.2px;
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,255,204,.35);
+      background: rgba(0,255,204,.12);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .2px;
     }
-    .elo{color:var(--muted); font-size:12px}
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:10px;
-      padding:0 16px 16px;
+    .elo { color: var(--muted); font-size: 12px }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 0 16px 16px;
     }
-    @media (max-width: 700px){
-      .stats{grid-template-columns:repeat(2, 1fr)}
+    @media (max-width: 700px) {
+      .stats { grid-template-columns: repeat(2, 1fr) }
     }
-    .stat{
-      border:1px solid rgba(31,42,59,.85);
-      background:rgba(11,15,20,.35);
-      border-radius:14px;
-      padding:12px;
-      min-height:72px;
+    .stat {
+      border: 1px solid rgba(31,42,59,.85);
+      background: rgba(11,15,20,.35);
+      border-radius: 14px;
+      padding: 12px;
+      min-height: 72px;
     }
-    .stat .k{color:var(--muted); font-size:12px}
-    .stat .v{font-size:20px; margin-top:6px; font-weight:900}
-    .hint{font-size:11px; color:var(--muted); margin-top:2px}
-    .good{color:var(--good)}
-    .warn{color:var(--warn)}
-    .bad{color:var(--bad)}
-    .list{padding:10px 16px 16px}
-    table{width:100%; border-collapse:collapse}
-    th,td{padding:10px 8px; font-size:13px}
-    th{
-      color:var(--muted);
-      font-weight:700;
-      text-align:left;
-      border-bottom:1px solid rgba(31,42,59,.85);
+    .stat .k { color: var(--muted); font-size: 12px }
+    .stat .v { font-size: 20px; margin-top: 6px; font-weight: 900 }
+    .hint { font-size: 11px; color: var(--muted); margin-top: 2px }
+    .good { color: var(--good) }
+    .warn { color: var(--warn) }
+    .bad { color: var(--bad) }
+    .list { padding: 10px 16px 16px }
+    table { width: 100%; border-collapse: collapse }
+    th, td { padding: 10px 8px; font-size: 13px }
+    th {
+      color: var(--muted);
+      font-weight: 700;
+      text-align: left;
+      border-bottom: 1px solid rgba(31,42,59,.85);
     }
-    td{border-bottom:1px solid rgba(31,42,59,.45)}
-    .map{font-weight:800}
-    .small{color:var(--muted); font-size:12px}
+    td { border-bottom: 1px solid rgba(31,42,59,.45) }
+    .map { font-weight: 800 }
+    .small { color: var(--muted); font-size: 12px }
 
-    /* Modal educativo */
-    .overlay{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,.55);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-    }
-    .modal{
-      max-width:620px;
-      width:100%;
-      border-radius:18px;
-      border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(17,24,38,.98), rgba(17,24,38,.9));
-      box-shadow:0 22px 60px rgba(0,0,0,.5);
-      overflow:hidden;
-    }
-    .modal .mhead{
-      padding:14px 16px;
-      border-bottom:1px solid rgba(31,42,59,.85);
-      display:flex; justify-content:space-between; align-items:center;
-      gap:10px;
-    }
-    .modal .mhead b{font-size:14px}
-    .modal .mbody{padding:16px; color:var(--text)}
-    .modal p{margin:0 0 10px; color:var(--muted); line-height:1.4}
-    .modal ul{margin:10px 0 0 18px; color:var(--muted)}
-    .modal .mactions{
-      padding:14px 16px;
-    }
-    .modal .mactions button{
-      padding:8px 16px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:rgba(17,24,38,.9);
-      color:var(--text);
-      font-weight:700;
-      cursor:pointer;
-      transition: background 0.3s;
-    }
-    .modal .mactions button:hover{
-      background:rgba(17,24,38,.75);
+    /* Botón abajo */
+    .btn-bottom {
+      margin-top: 20px;
+      background-color: var(--good);
+      color: var(--bg);
+      font-weight: 700;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -226,7 +197,7 @@
         <div class="pill">
           <input type="text" placeholder="Buscar jugador..." />
         </div>
-        <button class="btn" onclick="document.querySelector('.overlay').style.display='flex'">Mirar stats</button>
+        <div class="btn" style="cursor: default;">CS:GO Stats</div>
       </div>
     </header>
 
@@ -283,24 +254,14 @@
     </div>
   </div>
 
-  <div class="overlay">
-    <div class="modal">
-      <div class="mhead">
-        <b>¿Estás seguro?</b>
-        <button class="btn" onclick="document.querySelector('.overlay').style.display='none'">Cancelar</button>
-      </div>
-      <div class="mbody">
-        <p>Estás a punto de reiniciar la PC. ¿Quieres continuar?</p>
-        <button class="btn" onclick="window.location.href='/no_think'">Reiniciar</button>
-      </div>
-    </div>
-  </div>
+  <button class="btn-bottom" onclick="window.location.href='/no_think'">Mirar stats</button>
 
   <div class="footer">
     &copy; 2025 Lamber55 | Stats de CS:GO
   </div>
 </body>
 </html>
+
 
 
 
