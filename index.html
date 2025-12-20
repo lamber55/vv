@@ -173,12 +173,11 @@
       border: 1px solid rgba(77, 163, 255, .25);
       position: relative;
       overflow: hidden;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      color: var(--text);
     }
 
     .stats {
@@ -236,7 +235,7 @@
         <div class="pill">
           <input type="text" placeholder="Buscar jugador..." />
         </div>
-        <a href="https://github.com/Lamber55/csgo-stats" class="btn" target="_blank">GitHub</a>
+        <a href="https://github.com/Lamber55/csgo-stats" class="btn" target="_blank">CS:GO Stats</a>
       </div>
     </header>
 
@@ -247,9 +246,7 @@
           <span>Premier rating: 10554</span>
         </div>
         <div class="profile">
-          <div class="avatar">
-            <img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/7/7f7a9d3e0a8a4a5b9e0a8a4a5b9e0a8a_full.jpg" alt="Avatar" />
-          </div>
+          <div class="avatar">?</div>
           <div class="stats">
             <h3>Estadísticas</h3>
             <p>Win Rate: 54.2%</p>
@@ -279,6 +276,7 @@
   </div>
 </body>
 </html>
+
 
 
 
